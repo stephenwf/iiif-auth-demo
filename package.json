@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "main": "./build/worker.js",
+  "scripts": {
+    "build": "yarn build:remix && yarn build:worker",
+    "build:remix": "remix build",
+    "build:worker": "NODE_ENV=production node ./build.js",
+    "dev:miniflare": "miniflare --kv REDIRECTS --kv-persist --build-command \"npx node ./build.js\" --disable-cache --watch",
+    "deploy": "wrangler publish",
+    "start": "miniflare --kv REDIRECTS --kv-persist",
+    "dev": "remix dev"
+  },
+  "dependencies": {
+    "@iiif/vault": "^0.9.19",
+    "@remix-run/node": "^1.7.1",
+    "@remix-run/react": "^1.7.1",
+    "@remix-run/serve": "^1.7.1",
+    "iiif-builder": "^1.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tiny-invariant": "^1.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.16.0",
+    "@cloudflare/wrangler": "^1.19.13",
+    "@remix-run/cloudflare": "^1.7.2",
+    "@remix-run/cloudflare-workers": "^1.7.2",
+    "@remix-run/dev": "^1.7.1",
+    "@remix-run/eslint-config": "^1.7.1",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "esbuild": "^0.15.9",
+    "eslint": "8.15.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "miniflare": "^2.9.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
